@@ -21,7 +21,8 @@
 
 <body>
 <div id="app1">
-	<h2>组件模式生成</h2>
+    <h2>组件模式生成</h2>
+    <!--  -->
 	<form-create ref="fc" v-model="fApi" :rule="rule" :option="option" @goods-name-change="change"
 	             @btn-click="change"
 	             @xaboy-change="change" @mounted="fcMounted"></form-create>
@@ -93,11 +94,13 @@
                 }
             },
             mounted: function () {
+                //在created之后fApi会有值
                 console.log(this.fApi);
                 //实际开发中记得加 var
                 window.$f = this.fApi;
+                //实际的数据
                 this.formModel = this.fApi.model();
-                //动态添加表单元素
+                //动态添加表单元素，$r在mock.js里
                 this.fApi.append($r, 'pic');
             }
         });

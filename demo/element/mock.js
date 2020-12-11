@@ -1,6 +1,19 @@
 var maker = formCreate.maker;
 
-
+var mm = 
+    maker.input('商品名称', 'goods_name', 'iphone').props({
+        placeholder: '请输入商品名称',
+        clearable: true,
+        disabled: false,
+        maxlength: 20,
+        prefixIcon: 'el-icon-info'
+    }).validate([
+        {required: true, message: '请输入商品名称', trigger: 'blur'}
+    ]).event({
+        //    change: console.log
+    }).emit(['change']).className('goods-name').children([
+        maker.create('template').children(['append']).slot('append')
+    ]);
 //使用maker 生成器生成
 function mock() {
     var mock;

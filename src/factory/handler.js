@@ -11,6 +11,7 @@ import {
     uniqueId
 } from "../core/util";
 
+//引用了Render
 export default class Handler {
 
     constructor(vm, _rule, Render, options, noValue) {
@@ -24,6 +25,7 @@ export default class Handler {
         this.vm = vm;
         this.el = {};
         this.watch = [];
+        //所有rules
         this.root = [];
         this.orgChildren = [];
 
@@ -133,6 +135,7 @@ export function defRule() {
     }
 }
 
+//参数标准化，默认值
 export function parseRule(rule, vm, noVal) {
 
     const def = defRule();

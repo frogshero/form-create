@@ -17,6 +17,7 @@ export function defVData() {
     }
 }
 
+//VData维护_data
 export default class VData {
 
     constructor() {
@@ -58,6 +59,7 @@ export default class VData {
 }
 
 const keyList = ['ref', 'key', 'slot'];
+//props: ElementUI的组件属性
 const objList = ['scopedSlots', 'nativeOn', 'on', 'domProps', 'props', 'attrs', 'style'];
 
 keyList.forEach(key => {

@@ -2,6 +2,7 @@ import {formCreateName} from './component';
 import baseComponent from "./mixins";
 import {$nt} from "./util";
 
+//Vue组件选项
 export default function coreComponent(fComponent) {
     return {
         name: `${formCreateName}Core`,

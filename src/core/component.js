@@ -4,8 +4,13 @@ import {$nt} from "./util";
 
 const formCreateName = 'FormCreate';
 
+/**
+ * $FormCreate封装了FormCreate，混入了mixins
+ * coreComponent也混入了mixins
+ */
 const $FormCreate = () => ({
     name: formCreateName,
+    //$FormCreate的一些公共操作封装到了mixins.js
     mixins: [baseComponent],
     props: {
         rule: {
@@ -22,6 +27,7 @@ const $FormCreate = () => ({
             },
             required: false
         },
+        //在index.html里v-model绑定fApi，默认value的属性
         value: Object
     },
     render() {
@@ -29,6 +35,7 @@ const $FormCreate = () => ({
     },
     beforeCreate() {
         const {rule, option} = this.$options.propsData;
+        //$FormCreate封装了
         const _fc = new formCreate(rule, option);
 
         this._fComponent = _fc;
@@ -41,6 +48,7 @@ const $FormCreate = () => ({
         _fc.boot();
         this.$f = _fc.fCreateApi;
 
+        //这里更新v-model="fApi"的值
         this.$emit('input', _fc.fCreateApi);
     },
     mounted() {

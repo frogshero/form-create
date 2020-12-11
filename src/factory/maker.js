@@ -3,6 +3,7 @@ import {extend, isPlainObject, isString, isUndef, isValidChildren} from "../core
 
 export default function makerFactory(componentList) {
 
+    //FormCreate.maker
     let _m = {};
 
     Object.keys(componentList).forEach(key => {
@@ -11,6 +12,7 @@ export default function makerFactory(componentList) {
         const undef = isUndef(component.maker);
 
         if (undef || component.maker[component.name] === undefined)
+            //maker.input('商品名称', 'goods_name', 'iphone') ==> Creator ==> VNode
             _m[component.name] = creatorFactory(component.name);
 
         if (!undef)

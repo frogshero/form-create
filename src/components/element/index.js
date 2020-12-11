@@ -21,6 +21,8 @@ import VNode from "../../factory/vNode";
 import getConfig from './config'
 import getGlobalApi from './fApi'
 
+//一个组件包括4部分：handler, render, name, maker。
+//maker在mock.js里用到
 export const componentList = {
     hidden, checkbox, radio, input, autocomplete, inputnumber, select, cascader, slider, timepicker, datepicker,
     rate, colorpicker, tree, upload, frame, switch: iswitch
@@ -79,7 +81,9 @@ export default {
     componentList,
     formRender,
     style,
+    //Form样式和结构
     getConfig,
+    //FormCreate实例操作方法
     getGlobalApi,
 
     install

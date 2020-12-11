@@ -29,6 +29,7 @@ export function creatorTypeFactory(name, type, typeName = 'type') {
     }
 }
 
+//Creator维护规则rule
 export default class Creator extends VData {
     constructor(type, title, field, value, props = {}) {
         super();
@@ -49,6 +50,7 @@ export default class Creator extends VData {
     }
 
     getRule() {
+        //合并
         return extend(this.rule, this.get());
     }
 

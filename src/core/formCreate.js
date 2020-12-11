@@ -117,6 +117,7 @@ export function setComponent(id, component) {
         return {...components};
 }
 
+//FormCreate既是组件，又是一个插件
 export default class FormCreate {
 
     constructor(rules, options = {}) {
@@ -134,10 +135,14 @@ export default class FormCreate {
         this.options = margeGlobal(options);
         this.rules = Array.isArray(rules) ? rules : [];
         this.origin = [...this.rules];
+        
+        //createHandler
         this.handlers = {};
         this.formData = {};
         this.trueData = {};
         this.components = {};
+
+        //createHandler里，字段的name数组
         this.fieldList = [];
         this.switchMaker = this.options.switchMaker;
     }
@@ -159,33 +164,34 @@ export default class FormCreate {
         $formCreate.version = version;
         $formCreate.ui = ui;
         $formCreate.component = setComponent;
-        Vue.prototype.$formCreate = $formCreate;
+        Vue.prototype.$formCreate = $formCreate; //Vue的组件实例都可以用this.$formCreate,如index.html中
 
-        Vue.component(formCreateName, Vue.extend($FormCreate()));
+        Vue.component(formCreateName, Vue.extend($FormCreate())); //可以在模板里使用<form-create>
         _vue = Vue;
     }
 
-    static init(rules, _opt = {}) {
-        let opt = isElement(_opt) ? {el: _opt} : _opt;
-        let fComponent = new FormCreate(rules, opt);
-        let $fCreate = _vue.extend(coreComponent(fComponent));
-        let $vm = new $fCreate().$mount();
+    // 没地方用
+    // static init(rules, _opt = {}) {
+    //     let opt = isElement(_opt) ? {el: _opt} : _opt;
+    //     let fComponent = new FormCreate(rules, opt);
+    //     let $fCreate = _vue.extend(coreComponent(fComponent));  
+    //     let $vm = new $fCreate().$mount();
 
-        return {
-            mount($el) {
-                if ($el && isElement($el))
-                    $set(fComponent.options, 'el', $el);
+    //     return {
+    //         mount($el) {
+    //             if ($el && isElement($el))
+    //                 $set(fComponent.options, 'el', $el);
 
-                fComponent.options.el.appendChild($vm.$el);
+    //             fComponent.options.el.appendChild($vm.$el);
 
-                return fComponent.fCreateApi;
-            },
-            remove() {
-                fComponent.options.el.removeChild($vm.$el);
-            },
-            $f: fComponent.fCreateApi
-        };
-    }
+    //             return fComponent.fCreateApi;
+    //         },
+    //         remove() {
+    //             fComponent.options.el.removeChild($vm.$el);
+    //         },
+    //         $f: fComponent.fCreateApi
+    //     };
+    // }
 
     render() {
         return this.fRender.render(this.vm);
@@ -280,7 +286,9 @@ export default class FormCreate {
             if (!child)
                 this.fieldList.push(handler.field);
             return handler;
-        }).filter(h => h).forEach(h => {
+        })
+        .filter(h => h)  //？没啥用
+        .forEach(h => {
             h.root = rules;
         });
 
@@ -288,7 +296,8 @@ export default class FormCreate {
     }
 
     create(Vue) {
-        let $fCreate = Vue.extend(coreComponent(this)), $vm = new $fCreate().$mount();
+        let $fCreate = Vue.extend(coreComponent(this));
+        let $vm = new $fCreate().$mount();  //创建一个coreComponent的子类并实例化后mount
         this.options.el.appendChild($vm.$el);
         return $vm;
     }
@@ -430,5 +439,5 @@ export function setDrive(_drive) {
 export function install(Vue) {
     if (Vue._installedFormCreate === true) return;
     Vue._installedFormCreate = true;
-    Vue.use(FormCreate);
+    Vue.use(FormCreate);  //调用FormCreate.install
 }

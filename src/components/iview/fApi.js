@@ -1,5 +1,6 @@
 import {deepExtend, errMsg, isFunction, isPlainObject, isUndef, toString} from "../../core/util";
 
+//FormCreate实例的操作方法
 export default function getGlobalApi(fComponent) {
     let vm = fComponent.vm;
 

@@ -16,7 +16,7 @@ export default {
             unique: 1
         }
     },
-    components,
+    components,  //{ 'form-create': _vue.extend($FormCreate()) } 使用基础 Vue 构造器，创建一个“子类”。参数是一个包含组件选项的对象
     methods: {
         _formField() {
             return Object.keys(this.trueData);
