@@ -31,6 +31,7 @@ const $FormCreate = () => ({
         value: Object
     },
     render() {
+        //$FormCreate => FormCreate => Form(render->makeComponent->makeFormItem) => Render(parse->inputProps)
         return this._fComponent.render();
     },
     beforeCreate() {

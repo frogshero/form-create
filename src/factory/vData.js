@@ -17,7 +17,7 @@ export function defVData() {
     }
 }
 
-//VData维护_data
+//VData维护$createElement的第2个参数
 export default class VData {
 
     constructor() {

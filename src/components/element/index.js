@@ -79,6 +79,7 @@ export function install(FormCreate) {
 export default {
 
     componentList,
+    //formCreate.js: this.fRender = new drive.formRender(this);
     formRender,
     style,
     //Form样式和结构

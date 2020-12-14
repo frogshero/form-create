@@ -131,9 +131,10 @@ export default class Render {
         let {refName, key, field, rule} = this.handler;
         let {props, event} = rule;
 
+        //this.handler => this.vData
         Object.keys(this.vData._data).forEach((key) => {
             if (rule[key] !== undefined)
-                this.vData[key](rule[key]);
+                this.vData[key](rule[key]);  //vData.js里$set(this._data, key, extend(this._data[key], obj)); 把rule[key]合并到vData._data
         });
 
         let data = this.vData.props({value: this.vm._formData(field)})

@@ -121,6 +121,7 @@ export function setComponent(id, component) {
 export default class FormCreate {
 
     constructor(rules, options = {}) {
+        //Form.vue的render
         this.fRender = undefined;
         this.fCreateApi = undefined;
         this.$parent = undefined;
@@ -194,6 +195,7 @@ export default class FormCreate {
     // }
 
     render() {
+        //form.js开始
         return this.fRender.render(this.vm);
     }
 

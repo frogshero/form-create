@@ -58,6 +58,7 @@ export default class Form {
         return this.makeFormItem(render.handler, render.cacheParse(this), `fItem${render.handler.key}${this.unique}`);
     }
 
+    //el-form-item
     makeFormItem({type, rule, unique, field, refName}, VNodeFn, fItemUnique) {
         let labelWidth = (!isComponent(type) && !rule.col.labelWidth && !rule.title) ? 1 : rule.col.labelWidth;
         labelWidth = isNumeric(labelWidth) ? labelWidth + 'px' : labelWidth;

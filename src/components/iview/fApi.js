@@ -1,6 +1,6 @@
 import {deepExtend, errMsg, isFunction, isPlainObject, isUndef, toString} from "../../core/util";
 
-//FormCreate实例的操作方法
+//FormCreate实例的操作接口。使用FormCreate的组件可以通过这个接口获取设置Form字段值，删除添加字段，验证和提交
 export default function getGlobalApi(fComponent) {
     let vm = fComponent.vm;
 

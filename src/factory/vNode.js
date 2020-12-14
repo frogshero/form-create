@@ -13,6 +13,7 @@ export function getVNode(VNode) {
     return isFunction(VNode) ? VNode() : (VNode || [])
 }
 
+//创建虚拟DOM节点
 export default class VNode {
 
     constructor(vm) {
@@ -24,6 +25,7 @@ export default class VNode {
         this.$h = vm.$createElement;
     }
 
+    //这里创建组件的虚拟DOM
     make(nodeName, data, VNodeFn) {
         let Node = this.$h(nodeName, parseVData(data), getVNode(VNodeFn));
         Node.context = this.vm;
@@ -31,6 +33,7 @@ export default class VNode {
         return Node
     }
 
+    //vNode.formItem,vNode.radio......
     static use(nodes) {
         Object.keys(nodes).forEach((k) => {
             VNode.prototype[k] = function (data, VNodeFn) {
