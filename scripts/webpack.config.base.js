@@ -22,7 +22,8 @@ module.exports = {
     module: {
         rules: [{
             test: /\.jsx?$/,
-            exclude: /node_modules/,
+            // exclude: /node_modules/,  
+            //导致报错不能解析JSX：ERROR in ./packages/element-ui/node_modules/_@form-create_core@1.0.20@@form-create/core/src/core/index.js 105:23
             use: {
                 loader: 'babel-loader',
             }
