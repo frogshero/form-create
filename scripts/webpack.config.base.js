@@ -23,7 +23,19 @@ module.exports = {
         rules: [{
             test: /\.jsx?$/,
             // exclude: /node_modules/,  
-            //导致报错不能解析JSX：ERROR in ./packages/element-ui/node_modules/_@form-create_core@1.0.20@@form-create/core/src/core/index.js 105:23
+            //导致报错不能解析JSX
+            /**
+                ERROR in ./packages/element-ui/node_modules/_@form-create_core@1.0.20@@form-create/core/src/core/index.js 105:23
+                Module parse failed: Unexpected token (105:23)
+                You may need an appropriate loader to handle this file type, currently no loaders are configured to process this file. See https://webpack.js.org/concepts#loaders
+                |             },
+                |             render() {
+                >                 return <form-create ref='fc' props={this.$data}/>
+                |             }
+                |         });
+                @ ./packages/element-ui/src/core/index.js
+                @ ./packages/element-ui/src/index.js
+             */
             use: {
                 loader: 'babel-loader',
             }
